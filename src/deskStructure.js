@@ -8,10 +8,8 @@ export default () =>
 			.title('Items by region')
 			.id('region')
 			.child(
-				S.documentList()
+				S.documentTypeList('region')
 					.title('Regions')
-					.schemaType('region')
-					.filter('_type == "region"')
 					.child(regionId => // Returns the id for the selected region document
 						S.list()
 							.title('Pagebuilder options by region')
@@ -35,14 +33,13 @@ export default () =>
 									S.listItem('carousel')
 									.title('Carousels for region')
 									.child(
-										S.documentList()
-											.title('Carousels for region')
-											.schemaType('carousel')
-											.filter('_type == "carousel" && region._ref == $regionId')
-											.params({regionId})
-											.initialValueTemplates([
-												S.initialValueTemplateItem('carousel-has-region', {regionId})
-											])
+									 S.documentTypeList('carousel')
+									 	.title('Carousels for region')
+										.filter('_type == "carousel" && region._ref == $regionId')
+										.params({regionId})
+										.initialValueTemplates([
+											S.initialValueTemplateItem('carousel-has-region', {regionId})
+										])
 									)
 							])
 					)
