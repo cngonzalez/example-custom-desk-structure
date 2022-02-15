@@ -7,6 +7,7 @@ export default {
 			name: 'name',
 			title: 'Name',
 			type: 'string',
+validation: (rule) => rule.custom(name => (!name.includes('dog') && 'Please include "Dog"')).info(),
 		},
 	],
 }
